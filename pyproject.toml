@@ -1,0 +1,49 @@
+[tool.briefcase]
+project_name = "Terpsichore"
+bundle = "com.example"
+version = "0.0.1"
+url = "https://example.com/terpsichore"
+license = "BSD license"
+author = 'Marc Jowett'
+author_email = "marc.jowett@gmail.com"
+
+[tool.briefcase.app.terpsichore]
+formal_name = "Terpsichore"
+description = "BeeWare the Python Music Player!"
+icon = "src/terpsichore/resources/terpsichore"
+sources = ['src/terpsichore']
+requires = []
+
+
+[tool.briefcase.app.terpsichore.macOS]
+requires = [
+    'toga-cocoa>=0.3.0.dev20',
+]
+
+[tool.briefcase.app.terpsichore.linux]
+requires = [
+    'toga-gtk>=0.3.0.dev20',
+]
+system_requires = [
+    'libgirepository1.0-dev',
+    'libcairo2-dev',
+    'libpango1.0-dev',
+    'libwebkitgtk-3.0-0',
+    'gir1.2-webkit-3.0',
+]
+
+[tool.briefcase.app.terpsichore.windows]
+requires = [
+    'toga-winforms>=0.3.0.dev20',
+]
+
+# Mobile deployments
+[tool.briefcase.app.terpsichore.iOS]
+requires = [
+    'toga-iOS>=0.3.0.dev20',
+]
+
+[tool.briefcase.app.terpsichore.android]
+requires = [
+    'toga-android>=0.3.0.dev20',
+]
