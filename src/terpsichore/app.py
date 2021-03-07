@@ -10,11 +10,14 @@ import os
 import threading
 import time
 import eyed3
+import bs4
+import requests
+import re
 
 class Terpsichore(toga.App): 
 
     def startup(self):
-        """ TESTING
+        """
         Construct and show the Toga application.
         Usually, you would add your application to a main content box.
         We then create a main window (with a name matching the app), and
@@ -27,6 +30,7 @@ class Terpsichore(toga.App):
         # to allow objects to communicate with each other
         self.donk = Donk(self.main_window)
         self.music = Music(self.main_window)
+        self.bands = Webscraper(self.main_window)
 
         # Title button, for the "about" really.
         title_button = toga.Button(
@@ -41,7 +45,7 @@ class Terpsichore(toga.App):
         # Main box of boxes
         main_box = toga.Box(
             children=[title_button, self.donk.nothing_box,
-                self.music.music_box],
+                self.music.music_box, self.bands.band_box],
             style=Pack(direction=COLUMN, alignment=CENTER, padding=5)
             )
 
@@ -57,6 +61,10 @@ class Terpsichore(toga.App):
             )
 
 class Donk():
+
+    """
+    Class for the most pointless part of the app. Pointless, yet it stays.
+    """
         
     def __init__(self, main_window): # note: to alter another class, add
         # the object as a parameter
@@ -93,6 +101,10 @@ class Donk():
             )
 
 class Music:
+
+    """
+    Class for the music player.
+    """
 
     def __init__(self, main_window):
 
@@ -169,7 +181,7 @@ class Music:
             style=Pack(direction=ROW, alignment=CENTER)
         )
 
-        self.lbl_playing = toga.Label("Playing: ", style=Pack(
+        self.lbl_playing = toga.Label("Currently Playing: ", style=Pack(
             text_align=CENTER,
             padding_top=5,
             flex=1))
@@ -278,7 +290,7 @@ class Music:
             self.stop_music()
             pygame.mixer.music.load(self.current_song)
             self._music_tags(self.current_song)
-            self.lbl_playing.text = f'Playing: \
+            self.lbl_playing.text = f'Currently Playing: \
 {self.song_title} by {self.song_artist}'
             pygame.mixer.music.set_volume(self.volume)
             return self._sound_length()
@@ -322,10 +334,55 @@ class Music:
             pygame.mixer.music.set_volume(self.volume / 100)
             self.lbl_volume.text = f'Volume: {self.volume}'
 
-    class Webscraper:
+class Webscraper:
 
+    """
+    Class to find the latest bands.
+    Will use https://gigradar.co.uk/category/new-band-of-the-week/.
+    """
+
+    def __init__(self, main_window):
         # TODO: Webscraping popular music websites for latest bands
-        pass
+        self.url = "https://gigradar.co.uk/category/new-band-of-the-week/"
+        self.band_string = "New Bands:\n"
+
+        self.lbl_bands = toga.Label(self.band_string +
+                '\n\n\n\n\n\n\n\n\n\n\n\n',
+                style=Pack(
+                font_size=10,
+                text_align=CENTER,
+                flex=1,
+                ))
+        
+        self.get_band_elem()
+
+        self.band_box = toga.Box(
+            children=[
+                self.lbl_bands,
+                ],
+            style=Pack(direction=COLUMN, alignment=CENTER, padding_top=15)
+            )
+
+    def get_band_elem(self, *widget):
+        """Gets the band elements from 
+        "https://gigradar.co.uk/category/new-band-of-the-week/"
+        using Beautiful Soup and then puts them in the correct format
+        to be displayed in the program.
+        """
+        res = requests.get(self.url)
+        res.raise_for_status
+        soup = bs4.BeautifulSoup(res.text, 'html.parser')
+        band_elem = soup.find_all('h2', {"class": "entry-title"})
+        for i in band_elem:
+            band_extraction = re.split(r'<|>', str(i.contents[0]))
+            band_reformat = band_extraction[2].replace("&amp;","and")
+            band_reformat = band_reformat.replace(
+                "New Band of the Week: ",
+                ""
+                )
+            self.band_string += band_reformat + "\n"
+        print(self.band_string)
+        self.lbl_bands.text = self.band_string
 
 def main():
     return Terpsichore('Terpsichore', 'org.beeware.graze')
