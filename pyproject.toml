@@ -16,8 +16,8 @@ requires = [
 	'pygame>=2.0.1',
 	'eyed3>=0.9.6',
 	'bs4>=0.0.1',
-	'requests>=2.25.1']
-
+	'requests>=2.25.1'
+]
 
 [tool.briefcase.app.terpsichore.macOS]
 requires = [
