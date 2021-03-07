@@ -3,7 +3,7 @@ BeeWare the Python Music Player.
 """
 import toga
 from toga.style import Pack
-from toga.style.pack import CENTER, LEFT, RIGHT, COLUMN, ROW, Pack
+from toga.style.pack import CENTER, LEFT, RIGHT, COLUMN, ROW
 from toga.fonts import SANS_SERIF
 import pygame
 import os
@@ -181,7 +181,8 @@ class Music:
             style=Pack(direction=ROW, alignment=CENTER)
         )
 
-        self.lbl_playing = toga.Label("Currently Playing: ", style=Pack(
+        self.lbl_playing = toga.Label("Currently Playing: Nothing Yet!",
+            style=Pack(
             text_align=CENTER,
             padding_top=5,
             flex=1))
@@ -344,7 +345,7 @@ class Webscraper:
     def __init__(self, main_window):
         # TODO: Webscraping popular music websites for latest bands
         self.url = "https://gigradar.co.uk/category/new-band-of-the-week/"
-        self.band_string = "New Bands:\n"
+        self.band_string = "New Bands to Check Out:\n"
 
         self.lbl_bands = toga.Label(self.band_string +
                 '\n\n\n\n\n\n\n\n\n\n\n\n',
@@ -381,7 +382,6 @@ class Webscraper:
                 ""
                 )
             self.band_string += band_reformat + "\n"
-        print(self.band_string)
         self.lbl_bands.text = self.band_string
 
 def main():
