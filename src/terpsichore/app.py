@@ -28,7 +28,7 @@ class Terpsichore(toga.App):
             size=(400,500))
         # could create an object that all others take as arguments,
         # to allow objects to communicate with each other
-        self.donk = Donk(self.main_window)
+        self.moo = Moo(self.main_window)
         self.music = Music(self.main_window)
         self.bands = Webscraper(self.main_window)
 
@@ -44,7 +44,7 @@ class Terpsichore(toga.App):
 
         # Main box of boxes
         main_box = toga.Box(
-            children=[title_button, self.donk.nothing_box,
+            children=[title_button, self.moo.nothing_box,
                 self.music.music_box, self.bands.band_box],
             style=Pack(direction=COLUMN, alignment=CENTER, padding=5)
             )
@@ -60,7 +60,7 @@ class Terpsichore(toga.App):
             "Music time! Or whatever!"
             )
 
-class Donk():
+class Moo():
 
     """
     Class for the most pointless part of the app. Pointless, yet it stays.
@@ -75,7 +75,7 @@ class Donk():
             style=Pack(padding=(0, 5))
             )
         self.nothing_input = toga.TextInput(
-            initial="Donk.",
+            initial="Moo?",
             style=Pack(flex=1)
             )
         self.nothing_button = toga.Button(
@@ -343,7 +343,7 @@ class Webscraper:
     """
 
     def __init__(self, main_window):
-        # TODO: Webscraping popular music websites for latest bands
+        
         self.url = "https://gigradar.co.uk/category/new-band-of-the-week/"
         self.band_string = "New Bands to Check Out:\n"
 
