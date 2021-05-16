@@ -10,3 +10,5 @@ BeeWare the Python Music Player!
 .. _`Briefcase`: https://github.com/beeware/briefcase
 .. _`The BeeWare Project`: https://beeware.org/
 .. _`becoming a financial member of BeeWare`: https://beeware.org/contributing/membership
+
+.. image:: terpsichore_main.png
