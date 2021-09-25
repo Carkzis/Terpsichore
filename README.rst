@@ -16,20 +16,27 @@ BeeWare the Python Music Player!
 Description
 ===========
 
-This app lets you load up mp3s, and play them.  You can fastforward, rewind, stop, etc.  It's a very simple music player, however, it also scrapes a website (https://gigradar.co.uk/category/new-band-of-the-week/) for new bands using Beautiful Soup!
+This app lets you load up mp3s, and play them.  You can fastforward, rewind, stop, etc.  It's a very simple music player, however, it also scrapes the website `Gig Radar`_ for new bands using Beautiful Soup!
+
+.. _`Gig Radar`: https://gigradar.co.uk/category/new-band-of-the-week/
 
 Dependencies
 ============
 
 * Python 3.8 (has not been tested above or below this version).  Modules required are briefcase, toga, pygame, os, threading, time, eyed3, bs4, requests and re.
 * Windows 10 (has not been tested on macOS, Linux, or iOS, known not to work on Android).
-* Building BeeWare on Windows requires Git (https://git-scm.com/download/) and WiX Toolset (https://wixtoolset.org/releases/).
+* Building BeeWare on Windows requires `Git`_ and `WiX Toolset`_.
+
+.. _`Git`: https://git-scm.com/download/
+.. _`WiX Toolset`: https://wixtoolset.org/releases/
 
 Installing
 ==========
 
 * You can download the code from the Terpsichore repository by clicking "Code", then "Download ZIP".
-* Please read the BeeWare docs (https://docs.beeware.org/en/latest/) for guidance on how to install.
+* Please read the BeeWare `docs`_ for guidance on how to install.
+
+.. _`docs`: https://docs.beeware.org/en/latest/
 
 Executing the program
 =====================
@@ -43,7 +50,7 @@ Executing the program
 * >>>: Super-fastforward (10 seconds), you need to keep clicking it, it fastforwards by 10 seconds per click.
 * Stop: This stops the music, and returns the song back to the start, no longer playing.
 * Volume: Click the - or + buttons if you want the sound to be louder or quieter respectively.
-* New Bands to Check Out: This will deplay the 10 latest bands from https://gigradar.co.uk/category/new-band-of-the-week/.
+* New Bands to Check Out: This will deplay the 10 latest bands from `Gig Radar`_.
 
 Authors
 =======
@@ -62,5 +69,7 @@ This is licensed under the BSD-3-Clause License.  You can see the LICENSE.md for
 
 Acknowledgments
 ===============
-* Gigradar - (https://gigradar.co.uk/category/new-band-of-the-week/)
-* Russell Keith-Magee et al - (https://docs.beeware.org/)
+* `Gig Radar`_
+* `Russell Keith-Magee et al`_
+
+.. _`Russell Keith-Magee et al`: https://docs.beeware.org/
