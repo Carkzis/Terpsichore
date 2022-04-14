@@ -60,7 +60,7 @@ Marc Jowett (carkzis.apps@gmail.com)
 Version History
 ===============
 
-* 0.1 - Initial Release. Only works on Windows currently, and not on Android due to the pygame dependency.
+* 1.0 - Initial Release. Only works on Windows currently, and not on Android due to the pygame dependency.
   
 License
 =======
